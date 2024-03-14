@@ -151,22 +151,22 @@ public class ChatUI extends JFrame {
 			StringMessage str_message = null;
 			try {
 				while (true) {
-					obj_message = chatBus.stringMessage();
-					if (obj_message != null) {
-						if (obj_message.getCurrentType() == Message.STRING_MESSAGE) {
-							str_message = (StringMessage) obj_message;
-							JLabel label = new JLabel(
-									str_message.getSender() + " send a message:" + str_message.getContent());
-							label.setFont(new Font("consolas", Font.PLAIN, 14));
-							addMesstoPanel(label, 0, "blue");
-						}
+						obj_message = chatBus.stringMessage();
+						if (obj_message != null) {
+							if (obj_message.getCurrentType() == Message.STRING_MESSAGE) {
+								str_message = (StringMessage) obj_message;
+								JLabel label = new JLabel(
+										str_message.getSender() + " send a message:" + str_message.getContent());
+								label.setFont(new Font("consolas", Font.PLAIN, 14));
+								addMesstoPanel(label, 0, "blue");
+							}
 
-						else {
-							FileMessage file_message = (FileMessage) obj_message;
-							FileLabel file_label = new FileLabel(file_message);
-							addMesstoPanel(file_label, 0, "blue");
+							else {
+								FileMessage file_message = (FileMessage) obj_message;
+								FileLabel file_label = new FileLabel(file_message);
+								addMesstoPanel(file_label, 0, "blue");
+							}
 						}
-					}
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();

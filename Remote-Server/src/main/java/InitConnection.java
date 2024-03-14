@@ -18,6 +18,7 @@ public class InitConnection {
 	DataInputStream password = null;
 	DataOutputStream verify = null;
 	String width = "", height = "";
+	boolean OpentChat = false;
 	
 	InitConnection(int port, int portChat, String passwordValue) {
 		Robot robot = null;
@@ -33,7 +34,7 @@ public class InitConnection {
 			height = String.valueOf(dim.getHeight());
 			rectangle = new Rectangle(dim);
 			robot = new Robot(gDV);
-			
+		
 			while(true)
 			{
 				Socket sc = socket.accept();
@@ -48,6 +49,7 @@ public class InitConnection {
 					new SendScreen(sc, robot, rectangle);
 					new ReceiveEvents(sc, robot);
 					new ChatUI(new ChatBus(scChat));
+					break;
 				}
 			}
 		} catch (Exception e) {
